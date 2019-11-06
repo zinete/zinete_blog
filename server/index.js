@@ -1,11 +1,13 @@
-const Koa = require('koa')
-const consola = require('consola')
-const { Nuxt, Builder } = require('nuxt')
-
+import Koa from "koa"
+import consola from "consola"
+import { Nuxt, Builder } from "nuxt"
+import mongoose from "mongoose"
+import user from "./api/user"
+import dbConfig from "./config/config"
 const app = new Koa()
 
 // Import and Set Nuxt.js options
-const config = require('../nuxt.config.js')
+import config from "../nuxt.config.js"
 config.dev = app.env !== 'production'
 
 async function start () {
@@ -13,10 +15,16 @@ async function start () {
   const nuxt = new Nuxt(config)
 
   const {
+    // eslint-disable-next-line no-undef
     host = process.env.HOST || '127.0.0.1',
+    // eslint-disable-next-line no-undef
     port = process.env.PORT || 3000
   } = nuxt.options.server
 
+  // 连接数据库
+  mongoose.connect(dbConfig.dbs, {
+    useNewUrlParser: true
+  })
   // Build in development
   if (config.dev) {
     const builder = new Builder(nuxt)
@@ -24,7 +32,8 @@ async function start () {
   } else {
     await nuxt.ready()
   }
-
+  // 接口路由
+  app.use(user.routes(), user.allowedMethods())
   app.use((ctx) => {
     ctx.status = 200
     ctx.respond = false // Bypass Koa's built-in response handling
