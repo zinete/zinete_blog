@@ -16,7 +16,7 @@
     "cross-env": "^5.2.0",
     "koa": "^2.6.2",
     "koa-router": "^7.4.0",
-    "mongoose": "^5.7.8",
+    "mysql": "^2.17.1",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {

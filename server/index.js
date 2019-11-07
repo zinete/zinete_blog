@@ -1,9 +1,7 @@
 import Koa from "koa"
 import consola from "consola"
 import { Nuxt, Builder } from "nuxt"
-import mongoose from "mongoose"
 import user from "./api/user"
-import dbConfig from "./config/config"
 const app = new Koa()
 
 // Import and Set Nuxt.js options
@@ -21,10 +19,6 @@ async function start () {
     port = process.env.PORT || 3000
   } = nuxt.options.server
 
-  // 连接数据库
-  mongoose.connect(dbConfig.dbs, {
-    useNewUrlParser: true
-  })
   // Build in development
   if (config.dev) {
     const builder = new Builder(nuxt)
