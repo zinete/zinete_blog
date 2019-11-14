@@ -1,6 +1,7 @@
 import Koa from "koa"
 import consola from "consola"
 import { Nuxt, Builder } from "nuxt"
+import bodyParser from 'koa-bodyparser'
 import user from "./api/user"
 const app = new Koa()
 
@@ -26,6 +27,10 @@ async function start () {
   } else {
     await nuxt.ready()
   }
+  // 中间件获取前端传递的参数
+  app.use(bodyParser({
+    extendTypes: ['json', 'from', 'text']
+  }))
   // 接口路由
   app.use(user.routes(), user.allowedMethods())
   app.use((ctx) => {
