@@ -1,80 +1,103 @@
 <template>
   <div class="home_page">
-    <div class="input_box">
-      <a-input placeholder="请输入用户名" class="input_user" v-model="username"></a-input>
-      <a-input placeholder="请输入密码" class="input_pass" v-model="password"></a-input>
-      <a-button type="primary" @click="loginClick">立即登录</a-button>
-      <br />
-      <a-button type="dashed" @click="registerClick">立即注册</a-button>
-      <a href="article">文章详情</a>
-    </div>
+    <a-carousel effect="scrollx" autoplay arrows>
+      <div slot="prevArrow" class="custom_slick_arrow" style="left: 10px; zIndex: 1">
+        <a-icon type="left" />
+      </div>
+      <div slot="nextArrow" class="custom_slick_arrow" style="right: 10px">
+        <a-icon type="right"/>
+      </div>
+      <div v-for="item in banner" :key="item.id" class="banner_box">
+        <div><h3 class="banner_title">{{item.title}}</h3></div>
+        <div><img v-bind:src="item.img" alt="item.title" class="banner_img"></div>
+      </div>
+    </a-carousel>
+     <aricle-list/>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import md5 from "crypto-js/md5";
+import { Axios } from '../config/api/http';
+import AricleList from '../components/AricleList';
 export default {
   data() {
     return {
-      username: "",
-      password: ""
-    };
+      banner: []
+    }
   },
-  methods: {
-    //登录按钮事件
-    async loginClick() {
-      let slef = this;
-      var pattern = /0?(13|14|15|18|17)[0-9]{9}/;
-      if (pattern.test(slef.username)) {
-        alert("只能输入手机号");
-      } else {
-        let res = await axios.post("/user/login/", {
-          name: slef.username,
-          password: md5(slef.password).toString()
-        });
-        console.log(res.data);
-        if (res.data.code === 0) {
-          this.$message.warning(res.data.msg);
-        }
-      }
-    },
-    //注册按钮事件
-    async registerClick() {
-      let slef = this;
-      let res = await axios.post("/user/register", {
-        name: slef.username,
-        password: md5(slef.password).toString()
-      });
-      console.log(res);
-      if (res.data.code === 200) {
-        this.$message.info(res.data.msg);
+  created() {
+   
+  },
+  components: {
+    AricleList,
+  },
+  async asyncData(ctx) {
+    let slef = this
+    let data = await Axios.get("/blog/banner")
+    console.log(data, 'banner')
+    if(data.code === 200 ){
+      return {
+        banner: data.banner
       }
     }
+    
   }
 };
 </script>
 
 <style lang="css" scoped>
 .home_page {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  z-index: 1;
+  box-sizing: border-box;
+  min-height: 480px;
+}
+
+.ant_carousel >>> .slick_slide {
   flex-direction: row;
-  display: flex;
-  justify-content: center;
-  margin-top: 100px;
-  align-items: center;
+  height: 470px;
+  overflow: hidden;
 }
-.input_box {
-  margin: 20px;
-  width: 500px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+
+.ant_carousel >>> .custom_slick_arrow {
+  width: 25px;
+  height: 25px;
+  font-size: 25px;
+  color: #fff;
+  background-color: rgba(31, 45, 61, 0.11);
+  opacity: 0.3;
 }
-.input_user {
-  margin-bottom: 20px;
+.ant_carousel >>> .custom_slick_arrow:before {
+  display: none;
+}
+.ant_carousel >>> .custom_slick_arrow:hover {
+  opacity: 0.5;
+}
+
+.ant_carousel >>> .slick_slide h3 {
+  color: #fff;
+}
+.banner_img {
   flex: 1;
+  width: 100%;
+  height: 470px;
+  border-radius: 10px;
 }
-.input_pass {
-  margin-bottom: 20px;
+.banner_box {
+  position: relative;
+  overflow: hidden;
+}
+.banner_title {
+  height: 50px;
+  line-height: 50px;
+  padding: 0 15px;
+  background-color: rgba(0, 0, 0, .50);
+  color: #FFFFFF;
+  font-size: 26px;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
 }
 </style>

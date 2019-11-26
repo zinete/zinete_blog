@@ -1,9 +1,21 @@
 <template>
   <div>
+    <header-compont/>
     <nuxt />
+    <footer-compont/>
   </div>
 </template>
 
+<script>
+import HeaderCompont from '../components/Header'
+import FooterCompont from '../components/Footer'
+export default {
+  components: {
+    HeaderCompont,
+    FooterCompont
+  },
+}
+</script>
 <style>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -17,6 +29,9 @@ html {
   box-sizing: border-box;
 }
 
+ul li {
+  list-style: none
+}
 *,
 *:before,
 *:after {

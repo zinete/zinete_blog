@@ -2,7 +2,7 @@
  * @ Author: ZhengHui
  * @ Create Time: 2019-11-06 11:34:30
  * @ Modified by: ZhengHui
- * @ Modified time: 2019-11-14 13:16:24
+ * @ Modified time: 2019-11-15 16:34:42
  * @ Description: 用户相关
  */
 
@@ -26,10 +26,9 @@ router.post('/register', async (ctx) => {
   ]);
   if (!res) return ctx.body = Tips[1007];
   let { name, password } = data;
-  let sql = `INSERT INTO zinete_user(name, password, create_time, update_time, is_delete) VALUES(?,?,?,?,?)` ,
-  value = [name, md5(password).toString(), Utils.formatCurrentTime(), Utils.formatCurrentTime(), 0]
+  let sql = `INSERT INTO zinete_user(name, password, create_time, update_time, is_delete) VALUES(?,?,?,?,?)`,
+    value = [name, md5(password).toString(), Utils.formatCurrentTime(), Utils.formatCurrentTime(), 0]
   await db.query(sql, value).then(res => {
-    console.log(res, '注册ok')
     if (res && res.insertId != null) {
       ctx.body = {
         msg: '注册成功',
@@ -40,8 +39,9 @@ router.post('/register', async (ctx) => {
     }
   }).catch(e => {
     ctx.body = {
-      msg: e,
-      code: Tips[1011],
+      msg: '用户名已存在',
+      data: e,
+      code: -1
     }
   })
 })
@@ -55,7 +55,7 @@ router.post('/login', async (ctx) => {
   let res = Utils.formatData(data, [
     { key: 'name', type: 'string' },
     { key: 'password', type: 'string' }
-  ]); 
+  ]);
   /**
    * 首先拿到前端传递过来的值 使用 ctx.request.body 获取
    * 然后校验格式，将密码进行 md5 加密
@@ -69,16 +69,23 @@ router.post('/login', async (ctx) => {
       let val = res[0];
       let uid = val['uid'];
       let token = Utils.generateToken({ uid });
+      ctx.session.uid = uid;
+      ctx.cookies.set('uid', uid, {
+        maxAge: 86400000,
+        httpOnly: true
+      });
       ctx.body = {
-        token: token,
-        data: Tips[0]
+        token,
+        uid,
+        code: 200,
+        msg: '登录成功'
       }
     } else {
       ctx.body = Tips[1006];
     }
   }).catch(e => {
     ctx.body = Tips[1002];
-    console.log(e)
+    throw (e)
   });
 });
 

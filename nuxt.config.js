@@ -1,14 +1,16 @@
 
-module.exports = {
+export default {
   mode: 'universal',
   /*
   ** Headers of the page
   */
   head: {
+    // eslint-disable-next-line no-undef
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      // eslint-disable-next-line no-undef
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
@@ -29,8 +31,10 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/antd-ui'
+    '@/plugins/antd-ui',
+    '~/plugins/api.js'
   ],
+
   /*
   ** Nuxt.js dev-modules
   */
@@ -48,7 +52,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend () {
     }
   }
 }
