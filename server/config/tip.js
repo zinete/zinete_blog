@@ -2,11 +2,11 @@
  * @ Author: ZhengHui
  * @ Create Time: 2019-11-13 16:01:41
  * @ Modified by: ZhengHui
- * @ Modified time: 2019-11-14 12:56:35
+ * @ Modified time: 2019-11-27 17:35:26
  * @ Description: 接口返回码
  */
 
-export default {
+module.exports =  {
   0: {
     code: 0,
     msg: 'ok!'

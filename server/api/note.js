@@ -2,16 +2,15 @@
  * @ Author: ZhengHui
  * @ Create Time: 2019-11-27 13:39:12
  * @ Modified by: ZhengHui
- * @ Modified time: 2019-11-27 13:40:08
+ * @ Modified time: 2019-11-27 17:32:28
  * @ Description: 笔记本api
  */ 
 
-import Router from 'koa-router';
-import db from '../config/mysql';
-import Utils from '../config/index';
-import Tips from '../config/tip';
-import md5 from 'crypto-js/md5';
-
+const Router = require("koa-router") ;
+const db = require("../config/mysql");
+const Utils = require('../config/index');
+const Tips = require('../config/tip');
+const md5 = require('crypto-js/md5');
 
 const router = new Router({
   prefix: "/note"
@@ -52,3 +51,5 @@ router.post('/addNote', async (ctx, next) => {
     }
   })
 });
+
+module.exports = router

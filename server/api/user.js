@@ -2,15 +2,14 @@
  * @ Author: ZhengHui
  * @ Create Time: 2019-11-06 11:34:30
  * @ Modified by: ZhengHui
- * @ Modified time: 2019-11-15 16:34:42
+ * @ Modified time: 2019-11-27 17:35:49
  * @ Description: 用户相关
  */
-
-import Router from 'koa-router';
-import db from '../config/mysql';
-import Utils from '../config/index';
-import Tips from '../config/tip';
-import md5 from 'crypto-js/md5';
+const Router = require("koa-router") ;
+const db = require("../config/mysql");
+const Utils = require('../config/index');
+const Tips = require('../config/tip');
+const md5 = require('crypto-js/md5');
 const router = new Router({
   prefix: "/user"
 })
@@ -89,4 +88,4 @@ router.post('/login', async (ctx) => {
   });
 });
 
-export default router
+module.exports = router

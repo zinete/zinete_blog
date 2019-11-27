@@ -2,17 +2,18 @@
  * @ Author: ZhengHui
  * @ Create Time: 2019-11-13 16:04:32
  * @ Modified by: ZhengHui
- * @ Modified time: 2019-11-25 17:58:53
+ * @ Modified time: 2019-11-27 17:34:48
  * @ Description:
  */
 
-import Tips from './tip';
-import IS from 'is';
-import php_date from 'locutus/php/datetime/date'
-import strtotime from 'locutus/php/datetime/strtotime';
-import fs from 'fs';
-import path from 'path';
-import jwt from 'jsonwebtoken';
+const Tips = require('./tip');
+const IS = require('is');
+const php_date = require('locutus/php/datetime/date');
+const strtotime = require('locutus/php/datetime/strtotime');
+const fs = require('fs');
+const path = require('path');
+const jwt = require('jsonwebtoken');
+
 let util = {
   //formatData 必须为 {key,type}的格式,可以不传type
   formatData(params, valids) {
@@ -123,4 +124,4 @@ let util = {
   }
 }
 
-export default util;
+module.exports = util;

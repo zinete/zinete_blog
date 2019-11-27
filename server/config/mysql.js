@@ -2,11 +2,11 @@
  * @ Author: ZhengHui
  * @ Create Time: 2019-11-06 11:33:56
  * @ Modified by: ZhengHui
- * @ Modified time: 2019-11-06 23:46:29
+ * @ Modified time: 2019-11-27 17:35:09
  * @ Description: 相关配置文件
  */
 
-import mysql from 'mysql';
+const mysql = require('mysql');
 let config = {
   host: 'localhost',
   user: 'root',
@@ -34,7 +34,6 @@ let query = (sql, values) => {
     })
   })
 };
-export default {
-  query
-}
+
+module.exports = query
 
