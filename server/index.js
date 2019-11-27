@@ -1,10 +1,12 @@
-import Koa from "koa"
-import consola from "consola"
-import { Nuxt, Builder } from "nuxt"
-import bodyParser from 'koa-bodyparser'
-import router from "./api/index"
-import session from "koa-session"
-import Utils from "./config/index"
+
+
+const Koa = require('koa')
+const consola = require('consola')
+const { Nuxt, Builder } = require('nuxt')
+const bodyParser = require('koa-bodyparser')
+const router  = require('./api/index')
+const session = require("koa-session")
+const Utils = require("./config/index")
 const app = new Koa()
 
 app.keys = ['session@&'];
