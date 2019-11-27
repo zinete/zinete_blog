@@ -1,15 +1,9 @@
 <template>
   <div class="home_page">
     <a-carousel effect="scrollx" autoplay arrows>
-      <div slot="prevArrow" class="custom_slick_arrow" style="left: 10px; zIndex: 1">
-        <a-icon type="left" />
-      </div>
-      <div slot="nextArrow" class="custom_slick_arrow" style="right: 10px">
-        <a-icon type="right"/>
-      </div>
       <div v-for="item in banner" :key="item.id" class="banner_box">
         <div><h3 class="banner_title">{{item.title}}</h3></div>
-        <div><img v-bind:src="item.img" alt="item.title" class="banner_img"></div>
+        <div><img v-lazy="item.img" class="banner_img"></div>
       </div>
     </a-carousel>
      <aricle-list/>

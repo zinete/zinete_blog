@@ -21,20 +21,14 @@
       <span>鄂ICP备18028818号-1</span>
       zinete.com
     </div>
-    <div class="go_top" @click="backTop">
-      <a-icon type="up"></a-icon>
-      <span>顶部</span>
-    </div>
+    <a-back-top />
   </div>
 </template>
 
 <script>
 export default {
   methods: {
-    backTop() {
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
-    }
+   
   }
 };
 </script>
@@ -88,22 +82,5 @@ export default {
   font-size: 1rem;
   width: 100px;
 }
-.go_top {
-  position: fixed;
-  right: 32px;
-  bottom: 30px;
-  cursor: pointer;
-  height: 50px;
-  width: 40px;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  background: #000;
-  color: #ffffff;
-  flex-direction: column
-}
-.go_top:hover {
-  background: blueviolet;
-  color: #ffffff
-}
+
 </style>
