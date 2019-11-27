@@ -27,7 +27,7 @@ module.exports = {
       repo : 'git@github.com:zhenghui0705/zinete_blog.git',
       path : '/www/nodeserver/zineteblog',
       'post-deploy' : 
-      'git pull origin master && rm -rf node_modules && npm install && npm run build && pm2 reload ecosystem.config.js --env production'
+      'git pull origin master && rm -rf node_modules && npm install && npm run dev && pm2 reload ecosystem.config.js --env production'
     }
   }
 };
