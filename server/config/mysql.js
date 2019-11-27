@@ -2,14 +2,14 @@
  * @ Author: ZhengHui
  * @ Create Time: 2019-11-06 11:33:56
  * @ Modified by: ZhengHui
- * @ Modified time: 2019-11-27 17:35:09
+ * @ Modified time: 2019-11-27 17:46:03
  * @ Description: 相关配置文件
  */
 
 const mysql = require('mysql');
 let config = {
   host: 'localhost',
-  user: 'root',
+  user: 'zineteblog',
   password: 'Ab123456',
   database: 'zineteblog',
   port: 3306,
