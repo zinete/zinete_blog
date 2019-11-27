@@ -13,16 +13,15 @@ const imgBaseUrl = ''
 
 // eslint-disable-next-line no-undef
 if (process.env.NODE_ENV === 'development') {
-  baseUrl = 'http://localhost:3000/'
+  baseUrl = 'http://dev.zinete.com/'
   routerMode = 'hash'
 } else {
   baseUrl = 'http://localhost:3000/'
   routerMode = 'hash'
 }
 
-export {
+module.exports = {
   baseUrl,
   routerMode,
   imgBaseUrl
 }
-
