@@ -24,7 +24,7 @@ module.exports = {
       user : 'root',
       host : '119.3.236.203',
       ref  : 'origin/master',
-      repo : 'https://github.com/zhenghui0705/zinete_blog.git',
+      repo : 'git@github.com:zhenghui0705/zinete_blog.git',
       path : '/www/nodeserver/zineteblog',
       'post-deploy' : 
       'git pull origin master && rm -rf node_modules && npm install && npm run build && pm2 reload ecosystem.config.js --env production'
