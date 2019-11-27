@@ -9,7 +9,7 @@ module.exports = {
     instances: 1,
     autorestart: true,
     watch: false,
-    max_memory_restart: '2G',
+    max_memory_restart: '1G',
     env: {
       NODE_ENV: 'development'
     },
@@ -27,7 +27,7 @@ module.exports = {
       repo : 'git@github.com:zhenghui0705/zinete_blog.git',
       path : '/www/nodeserver/zineteblog',
       'post-deploy' : 
-      'git pull origin master && rm -rf node_modules && npm install && npm run dev && pm2 reload ecosystem.config.js --env production'
+      'git pull origin master && rm -rf node_modules && npm install && npm run build && pm2 reload ecosystem.config.js --env production'
     }
   }
 };
