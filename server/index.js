@@ -10,8 +10,7 @@ const Utils = require("./config/index")
 const app = new Koa()
 
 app.keys = ['session@&'];
-// Import and Set Nuxt.js options
-import config from "../nuxt.config.js"
+const config = require("../nuxt.config.js")
 config.dev = app.env !== 'production'
 
 app.use(session({
