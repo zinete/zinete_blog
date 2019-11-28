@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === 'development') {
   baseUrl = 'http://dev.zinete.com/'
   routerMode = 'hash'
 } else {
-  baseUrl = 'http://dev.zinete.com/'
+  baseUrl = 'http://localhost:3000/'
   routerMode = 'hash'
 }
 

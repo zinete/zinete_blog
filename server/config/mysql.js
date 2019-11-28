@@ -2,7 +2,7 @@
  * @ Author: ZhengHui
  * @ Create Time: 2019-11-06 11:33:56
  * @ Modified by: ZhengHui
- * @ Modified time: 2019-11-27 17:46:03
+ * @ Modified time: 2019-11-28 18:11:46
  * @ Description: 相关配置文件
  */
 
@@ -35,5 +35,5 @@ let query = (sql, values) => {
   })
 };
 
-module.exports = query
+module.exports = {query}
 
