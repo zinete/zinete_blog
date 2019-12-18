@@ -4,7 +4,7 @@ const Koa = require('koa')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 const bodyParser = require('koa-bodyparser')
-const router  = require('./api/index')
+const router = require('./api/index')
 const session = require("koa-session")
 const Utils = require("./config/index")
 const app = new Koa()
@@ -22,16 +22,16 @@ app.use(session({
   rolling: false
 }, app))
 
-app.use(async(ctx, next) => {
-  let {url = ''} = ctx;
-  if(url.indexOf('/oa/user') >-1){//需要校验登录态
-      let check = Utils.checkLogin(ctx);
-      if(check.code != 0) return ctx.body = check;
+app.use(async (ctx, next) => {
+  let { url = '' } = ctx;
+  if (url.indexOf('/oa/user') > -1) {//需要校验登录态
+    let check = Utils.checkLogin(ctx);
+    if (check.code != 0) return ctx.body = check;
   }
   await next();
 });
 
-async function start () {
+async function start() {
   // Instantiate nuxt.js
   const nuxt = new Nuxt(config)
 

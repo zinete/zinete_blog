@@ -2,7 +2,7 @@
  * @ Author: ZhengHui
  * @ Create Time: 2019-12-13 14:25:09
  * @ Modified by: ZhengHui
- * @ Modified time: 2019-12-18 16:22:23
+ * @ Modified time: 2019-12-18 17:11:25
  * @ Description: 图片相关接口
  */
 
@@ -12,6 +12,7 @@ const Utils = require('../config/index');
 const Tips = require('../config/tip');
 const fs = require('fs');
 const asyncBusboy = require('async-busboy');
+const { baseUrl } = require("../../config/api/env");
 const path = require("path")
 const router = new Router({
   prefix: "/uploadFile"
@@ -35,7 +36,7 @@ router.post('/img', async (ctx) => {
 
     try {
       let create_time = Utils.formatCurrentTime();
-      let sql = 'INSERT INTO zinete_img(name,uid,create_time) VALUES (?,?,?)', value = ['http://localhost:3000/newimgs/' + name, uid, create_time];
+      let sql = 'INSERT INTO zinete_img(name,uid,create_time) VALUES (?,?,?)', value = [baseUrl + name, uid, create_time];
       await db.query(sql, value).then(res => {
         let img = fs.readFileSync(filepath);
         fs.writeFileSync(savePath, img);
