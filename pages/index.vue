@@ -1,40 +1,41 @@
 <template>
   <div class="home_page">
-    <a-carousel effect="scrollx" autoplay arrows>
+    <a-carousel effect="scrollx" autoplay>
       <div v-for="item in banner" :key="item.id" class="banner_box">
-        <div><h3 class="banner_title">{{item.title}}</h3></div>
-        <div><img v-lazy="item.img" class="banner_img"></div>
+        <div>
+          <h3 class="banner_title">{{item.create_time}}</h3>
+        </div>
+        <div>
+          <img v-lazy="item.name" class="banner_img" />
+        </div>
       </div>
     </a-carousel>
-     <aricle-list/>
+    <aricle-list />
   </div>
 </template>
 
 <script>
-import { Axios } from '../config/api/http';
-import AricleList from '../components/AricleList';
+import { Axios } from "../config/api/http";
+import AricleList from "../components/AricleList";
 export default {
   data() {
     return {
       banner: []
-    }
+    };
   },
-  created() {
-   
-  },
+  created() {},
   components: {
-    AricleList,
+    AricleList
   },
   async asyncData(ctx) {
-    let slef = this
-    let data = await Axios.get("/blog/banner")
-    console.log(data, 'banner')
-    if(data.code === 200 ){
+    let slef = this;
+    let data = await Axios.get("/blog/banner");
+    console.log(data, "banner");
+    if (data.code === 200) {
       return {
         banner: data.banner
-      }
+      };
     }
-    
   }
 };
 </script>
@@ -87,8 +88,8 @@ export default {
   height: 50px;
   line-height: 50px;
   padding: 0 15px;
-  background-color: rgba(0, 0, 0, .50);
-  color: #FFFFFF;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
   font-size: 26px;
   position: absolute;
   left: 0px;

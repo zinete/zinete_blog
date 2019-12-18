@@ -2,15 +2,16 @@
  * @ Author: ZhengHui
  * @ Create Time: 2019-11-06 11:33:56
  * @ Modified by: ZhengHui
- * @ Modified time: 2019-11-28 18:11:46
+ * @ Modified time: 2019-12-13 12:00:12
  * @ Description: 相关配置文件
  */
 
 const mysql = require('mysql');
+const { user, password } = require('./db');
 let config = {
   host: 'localhost',
-  user: 'zineteblog',
-  password: 'Ab123456',
+  user: user,
+  password: password,
   database: 'zineteblog',
   port: 3306,
   multipleStatements: true//允许多条sql同时执行

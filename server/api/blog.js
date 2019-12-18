@@ -2,40 +2,45 @@
  * @ Author: ZhengHui
  * @ Create Time: 2019-11-25 23:51:05
  * @ Modified by: ZhengHui
- * @ Modified time: 2019-11-27 17:32:36
+ * @ Modified time: 2019-12-18 16:53:54
  * @ Description: 文章相关接口
  */
 
 
-const Router = require("koa-router") ;
+const Router = require("koa-router");
 const db = require("../config/mysql");
 const Utils = require('../config/index');
 const Tips = require('../config/tip');
 const md5 = require('crypto-js/md5');
+const fs = require('fs')
 
 const router = new Router({
   prefix: "/blog"
 })
 
 router.get('/banner', async (ctx) => {
-  ctx.body = {
-    banner: [
-      {
-        img: 'https://www.shirmy.me/_nuxt/img/b54c756.jpeg',
-        title: '第一个标题这是从接口读取的数据'
-      },
-      {
-        img: 'https://resource.shirmy.me/blog/covers/2019-04-27/qili.jpeg',
-        title: '第二个标题aaaaa'
-      },
-      {
-        img: 'https://resource.shirmy.me/blog/screenshot/2019-07-23/cover.jpg',
-        title: '第三个标题'
-      }
-    ],
-    code: 200,
-    msg: '获取banner图成功'
-  }
+  let data = Utils.filter(ctx.request.query, ['pageSize', 'pageNum'])
+  let uid = 1
+  let { pageNum = 1, pageSize = 10 } = data;
+  pageNum = Number(pageNum);
+  pageSize = Number(pageSize);
+  let offset = (pageNum - 1) * pageSize;
+  let sql = `SELECT name,create_time,id FROM zinete_img  WHERE uid=${uid} AND is_delete=0 ORDER BY create_time DESC limit ${offset},${pageSize};`,
+    sql1 = `SELECT count(1) FROM  zinete_img WHERE uid=${uid} AND is_delete=0;`;
+  await db.query(sql1 + sql).then(async result => {
+    let res1 = result[0], res2 = result[1], total = 0, list = [];
+    if (res1 && res1.length > 0 && res2 && res2.length > 0) {
+      total = res1[0]['count(1)'];
+      list = res2;
+    }
+    ctx.body = {
+      banner: list,
+      code: 200,
+      msg: '获取banner图成功'
+    }
+  }).catch(e => {
+    ctx.body = Tips[1002];
+  })
 })
 
 
@@ -121,9 +126,9 @@ router.get('/:id', async (ctx, next) => {
     let detail = res[0] || [];
     console.log(detail, '文章详情')
     if (detail) {
-      ctx.body = { 
+      ctx.body = {
         code: 200,
-        detail 
+        detail
       }
 
     } else {

@@ -24,7 +24,7 @@
       </header>
       <div class="article-container">
         <div class="content">
-         <vue-markdown>{{handbook}}</vue-markdown>
+          <vue-markdown>{{handbook}}</vue-markdown>
         </div>
       </div>
     </main>
@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import VueMarkdown from 'vue-markdown';
-import { Axios } from '../../config/api/http';
+import VueMarkdown from "vue-markdown";
+import { Axios } from "../../config/api/http";
 export default {
   data() {
     return {
@@ -41,18 +41,18 @@ export default {
     };
   },
   async asyncData(ctx) {
-    let slef = this
-    let data = await Axios.get("/blog/6")
-    console.log(data, '222content')
-    if(data.code === 200 ){
+    let slef = this;
+    let data = await Axios.get("/blog/6");
+    console.log(data, "222content");
+    if (data.code === 200) {
       return {
         handbook: data.detail.content
-      }
-    } 
+      };
+    }
   },
   components: {
-    VueMarkdown,
-  },
+    VueMarkdown
+  }
 };
 </script>
 

@@ -7,11 +7,12 @@
  */
 
 import axios from "axios";
+import { baseUrl } from "../../config/api/env"
 axios.defaults.withCredentials = true; //让ajax携带cookie
 const _Axios = axios.create({
   timeout: 10000, // 超时时间
   responseType: "json", // 服务器响应的数据类型
-  baseURL: "http://dev.zinete.com/",
+  baseURL: baseUrl,
   headers: {
     // 请求头避免数据出现乱码
     "Content-Type": "application/json; charset=utf-8",

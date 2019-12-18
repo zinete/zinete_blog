@@ -7,7 +7,7 @@
       <ul>
         <li><a href="/">首页</a></li>
         <li><a href="/article/label">标签</a></li>
-        <li><a href="">关于</a></li>
+        <li><a href="/about/index">关于</a></li>
         <li><a href="">留言板</a></li>
         <li><a href="">有意思的</a></li>
         <li><a href="/article/initarticle">写文章</a></li>

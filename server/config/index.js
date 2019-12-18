@@ -2,7 +2,7 @@
  * @ Author: ZhengHui
  * @ Create Time: 2019-11-13 16:04:32
  * @ Modified by: ZhengHui
- * @ Modified time: 2019-11-27 17:34:48
+ * @ Modified time: 2019-12-18 16:44:11
  * @ Description:
  */
 
@@ -117,8 +117,8 @@ let util = {
       if (current <= exp) {
         res = result.data || {};
       }
-    // eslint-disable-next-line no-empty
-    } catch (e) {}
+      // eslint-disable-next-line no-empty
+    } catch (e) { }
     return res;
 
   }
