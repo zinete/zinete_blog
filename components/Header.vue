@@ -1,48 +1,60 @@
 <template>
   <div class="header_page">
     <div class="logo">
-      <a href="/">Zinete</a>
+      <a href="/" class="logo_slog">无边落木萧萧下</a>
     </div>
     <div class="nav_bar">
       <ul>
-        <li><a href="/">首页</a></li>
-        <li><a href="/article/label">标签</a></li>
-        <li><a href="/about/index">关于</a></li>
-        <li><a href="">留言板</a></li>
-        <li><a href="">有意思的</a></li>
-        <li><a href="/article/initarticle">写文章</a></li>
-        
-        
+        <li>
+          <a href="/">首页</a>
+        </li>
+        <li>
+          <a href="/article/label">标签</a>
+        </li>
+        <li>
+          <a href="/about">关于</a>
+        </li>
+        <li>
+          <a href>留言板</a>
+        </li>
+        <li>
+          <a href>有意思的</a>
+        </li>
+        <li>
+          <a href="/article/initarticle">写文章</a>
+        </li>
+
         <!-- <li><a href="/user/login">登录/注册</a></li> -->
       </ul>
-     
     </div>
   </div>
 </template>
 
 <script>
-import Cookie from 'js-cookie'
+import Cookie from "js-cookie";
 export default {
-  middleware: 'auth',
+  middleware: "auth",
   data() {
     return {
-      login: ''
+      login: ""
     };
   },
-  mounted (){
+  mounted() {
     let slef = this;
-    let token = Cookie.get('login');
-    slef.login = token
+    let token = Cookie.get("login");
+    slef.login = token;
   }
-  
-}
+};
 </script>
 
 <style lang="css" scoped>
-
 .logo {
   font-size: 30px;
   transition: all 0.1s linear;
+}
+.logo_slog {
+  color: #6aa980;
+  font-weight: 500;
 }
 .header_page {
   display: flex;
@@ -56,7 +68,7 @@ export default {
   box-sizing: border-box;
   /* position: sticky; */
   top: 0;
-  background: #ffffff
+  background: #ffffff;
 }
 
 .nav_bar ul {
@@ -72,7 +84,7 @@ export default {
   margin: 5px 12px;
 }
 .nav_bar ul li a {
-  color: #666
+  color: #666;
 }
 .nav_bar ul li a:hover {
   color: #ffad00;

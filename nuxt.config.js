@@ -4,17 +4,18 @@ module.exports = {
   /*
   ** Headers of the page
   */
+
   head: {
     // eslint-disable-next-line no-undef
-    title: process.env.npm_package_name || '米兰的小铁匠',
+    title: '米兰的小铁匠',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       // eslint-disable-next-line no-undef
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '米兰的小铁匠' }
+      { hid: 'description', name: 'description', content: '米兰的小铁匠' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: 'https://lang.zinete.com/favicon.ico' }
     ]
   },
   /*
@@ -36,7 +37,7 @@ module.exports = {
     '@/plugins/antd-ui',
     '~/plugins/api.js',
     '~/plugins/vue-markdown.js',
-    { src: "~/plugins/vue-lazyload.js" ,ssr: false}
+    { src: "~/plugins/vue-lazyload.js", ssr: false }
   ],
 
   /*
@@ -56,7 +57,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend () {
+    extend() {
     }
   }
 }

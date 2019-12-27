@@ -9,7 +9,6 @@
       <a-button type="primary" @click="loginClick" class="userBtn">立即登录</a-button>
       <br />
       <a-button type="dashed" @click="registerClick" class="userBtn">立即注册</a-button>
-      <a href="/article">文章详情</a>
     </div>
   </div>
 </template>
@@ -53,7 +52,7 @@ export default {
         this.$message.info("用户名密码不能为空");
         return false;
       } else {
-        //效验所有参数都没有问题才发起请求，注册入库
+        //校验所有参数都没有问题才发起请求，注册入库
         let data = await this.$API.post("/user/register", {
           name: slef.username,
           password: md5(slef.password).toString()

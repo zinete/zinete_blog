@@ -3,7 +3,7 @@
     <a-carousel effect="scrollx" autoplay>
       <div v-for="item in banner" :key="item.id" class="banner_box">
         <div>
-          <h3 class="banner_title">{{item.create_time}}</h3>
+          <h3 class="banner_title">{{item.des}}</h3>
         </div>
         <div>
           <img v-lazy="item.name" class="banner_img" />

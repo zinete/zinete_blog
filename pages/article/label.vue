@@ -4,21 +4,24 @@
       <div v-for="item in lable" :key="item.id">
         <div class="lable_pre">
           <img v-bind:src="item.name" alt="item.title" class="lable_img" />
-          {{item.name}}
+          <p class="lable_des">{{item.des}}</p>
         </div>
       </div>
     </div>
-    <a-upload
-      name="file"
-      :multiple="true"
-      action="/uploadFile/img"
-      :headers="headers"
-      @change="handleChange"
-    >
-      <a-button>
-        <a-icon type="upload" />Click to Upload
-      </a-button>
-    </a-upload>
+    <div class="upload_body">
+      <a-input placeholder="请输入图片描述"></a-input>
+      <a-upload
+        name="file"
+        :multiple="true"
+        action="/uploadFile/img"
+        :headers="headers"
+        @change="handleChange"
+      >
+        <a-button class="upload_btn">
+          <a-icon type="upload" />上传图片
+        </a-button>
+      </a-upload>
+    </div>
   </div>
 </template>
 
@@ -43,7 +46,10 @@ export default {
   methods: {
     handleChange(info) {
       if (info.file.status !== "uploading") {
-        console.log(info.file, "文件");
+        const { code } = info.file.response;
+        if (code == 200) {
+          this.$message.info("上传成功");
+        }
       }
     }
   }
@@ -51,28 +57,41 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.upload_body {
+  align-items: center;
+  justify-content: flex-end;
+  margin: 40px 0;
+  display: flex;
+  flex-direction: column;
+}
 .lable_page {
   margin: 0 200px;
 }
+.lable_des {
+  margin-top: 20px;
+  font-weight: normal;
+  color: #fff;
+}
 .lable_pre {
-  background: #ddd;
+  background: #c54586;
   padding: 20px;
   width: 200px;
   margin: 10px;
   border-radius: 10px;
-  border: 1px solid red;
   display: block;
   text-align: center;
-  align-content: center;
+  align-items: center;
 }
 .lable_pre:hover {
-  border: 1px solid #000;
   cursor: pointer;
 }
 .lable_pre_content {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+}
+.upload_btn {
+  margin-top: 20px;
 }
 
 .lable_img {

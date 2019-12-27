@@ -2,7 +2,7 @@
  * @ Author: ZhengHui
  * @ Create Time: 2019-11-25 23:51:05
  * @ Modified by: ZhengHui
- * @ Modified time: 2019-12-18 16:53:54
+ * @ Modified time: 2019-12-27 16:51:19
  * @ Description: 文章相关接口
  */
 
@@ -25,7 +25,7 @@ router.get('/banner', async (ctx) => {
   pageNum = Number(pageNum);
   pageSize = Number(pageSize);
   let offset = (pageNum - 1) * pageSize;
-  let sql = `SELECT name,create_time,id FROM zinete_img  WHERE uid=${uid} AND is_delete=0 ORDER BY create_time DESC limit ${offset},${pageSize};`,
+  let sql = `SELECT name,create_time,id,des FROM zinete_img  WHERE uid=${uid} AND is_delete=0 ORDER BY create_time DESC limit ${offset},${pageSize};`,
     sql1 = `SELECT count(1) FROM  zinete_img WHERE uid=${uid} AND is_delete=0;`;
   await db.query(sql1 + sql).then(async result => {
     let res1 = result[0], res2 = result[1], total = 0, list = [];
@@ -39,7 +39,10 @@ router.get('/banner', async (ctx) => {
       msg: '获取banner图成功'
     }
   }).catch(e => {
-    ctx.body = Tips[1002];
+    ctx.body = {
+      code: Tips[1002],
+      e
+    };
   })
 })
 
@@ -120,7 +123,7 @@ router.get('/:id', async (ctx, next) => {
   if (!res) return ctx.body = Tips[1007];
   let { id } = data;
   id = parseInt(id);
-  console.log(id, '文章 id')
+  console.log(id, '文章 id1')
   let sql = `SELECT content,id,title,note_id,brief,create_time,publish  FROM zinete_blog WHERE id=${id} AND is_delete=0;`;
   await db.query(sql).then(res => {
     let detail = res[0] || [];

@@ -2,7 +2,7 @@
  * @ Author: ZhengHui
  * @ Create Time: 2019-12-13 14:25:09
  * @ Modified by: ZhengHui
- * @ Modified time: 2019-12-18 17:11:25
+ * @ Modified time: 2019-12-27 17:16:37
  * @ Description: 图片相关接口
  */
 
@@ -30,13 +30,12 @@ router.post('/img', async (ctx) => {
     let { mimeType = '', filename, path: filepath } = file;
     if (mimeType.indexOf('image') === -1) return ctx.body = Tips[1002];
     let name = Date.now() + '.' + filename.split('.').pop();
-    console.log(name, '文件路径')
+
     let savePath = path.join(__dirname, `../../static/newimgs/${name}`);
-
-
+    let severUrl = baseUrl + "newimgs/" + name
     try {
       let create_time = Utils.formatCurrentTime();
-      let sql = 'INSERT INTO zinete_img(name,uid,create_time) VALUES (?,?,?)', value = [baseUrl + name, uid, create_time];
+      let sql = 'INSERT INTO zinete_img(name,uid,create_time) VALUES (?,?,?)', value = [severUrl, uid, create_time];
       await db.query(sql, value).then(res => {
         let img = fs.readFileSync(filepath);
         fs.writeFileSync(savePath, img);
@@ -72,7 +71,7 @@ router.get('/find/myImg', async (ctx, next) => {
   pageNum = Number(pageNum);
   pageSize = Number(pageSize);
   let offset = (pageNum - 1) * pageSize;
-  let sql = `SELECT name,create_time,id FROM zinete_img  WHERE uid=${uid} AND is_delete=0 ORDER BY create_time DESC limit ${offset},${pageSize};`,
+  let sql = `SELECT name,create_time,id,des FROM zinete_img  WHERE uid=${uid} AND is_delete=0 ORDER BY create_time DESC limit ${offset},${pageSize};`,
     sql1 = `SELECT count(1) FROM  zinete_img WHERE uid=${uid} AND is_delete=0;`;
   await db.query(sql1 + sql).then(async result => {
     let res1 = result[0], res2 = result[1], total = 0, list = [];

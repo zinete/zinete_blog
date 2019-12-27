@@ -47,6 +47,7 @@ CREATE TABLE `zinete_img` (
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `name` varchar(100) DEFAULT NULL,
   `is_delete` tinyint(1) DEFAULT '0',
+  `des` varchar(100) DEFAULT NULL
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0  DEFAULT CHARSET=utf8;
 

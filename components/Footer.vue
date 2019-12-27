@@ -2,8 +2,8 @@
   <div class="footer_page">
     <div class="footer-wrapper">
       <a href="/">
-        <p>显示一个 logo</p>
-        <span>zinete</span>
+        <img src="https://lang.zinete.com/favicon.ico" alt srcset />
+        <span>风急天高猿啸哀</span>
       </a>
       <div class="menu-wrapper">
         <ul class="nav-list">
@@ -14,7 +14,7 @@
         </ul>
       </div>
       <div class="social-links">
-        <a href>zinete</a>
+        <a href="/">渚清沙白</a>
       </div>
     </div>
     <div class="footer-copyright">
@@ -27,9 +27,7 @@
 
 <script>
 export default {
-  methods: {
-   
-  }
+  methods: {}
 };
 </script>
 
@@ -82,5 +80,4 @@ export default {
   font-size: 1rem;
   width: 100px;
 }
-
 </style>

@@ -2,13 +2,13 @@
  * @ Author: ZhengHui
  * @ Create Time: 2019-11-13 16:01:41
  * @ Modified by: ZhengHui
- * @ Modified time: 2019-11-27 17:35:26
+ * @ Modified time: 2019-12-27 17:07:59
  * @ Description: 接口返回码
  */
 
-module.exports =  {
+module.exports = {
   0: {
-    code: 0,
+    code: 200,
     msg: 'ok!'
   },
   1002: {
