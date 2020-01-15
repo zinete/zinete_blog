@@ -3,10 +3,10 @@
     <a-carousel effect="scrollx" autoplay>
       <div v-for="item in banner" :key="item.id" class="banner_box">
         <div>
-          <h3 class="banner_title">{{item.des}}</h3>
+          <h3 class="banner_title">{{item.title}}</h3>
         </div>
         <div>
-          <img v-lazy="item.name" class="banner_img" />
+          <img v-lazy="item.picUrl" class="banner_img" />
         </div>
       </div>
     </a-carousel>
@@ -29,11 +29,11 @@ export default {
   },
   async asyncData(ctx) {
     let slef = this;
-    let data = await Axios.get("/blog/banner");
+    let { data } = await Axios.get("/news/index");
     console.log(data, "banner");
     if (data.code === 200) {
       return {
-        banner: data.banner
+        banner: data.newslist
       };
     }
   }
